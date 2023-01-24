@@ -3,12 +3,13 @@ const DesktopMenu = document.querySelector('.desktop-menu');
 const hamMenu = document.querySelector('.ham-Menu');
 const mobileMenu = document.querySelector('.mobile-Menu');
 const menuCarritoIcon = document.querySelector('.navbar-shopping-cart');
-const aside = document.querySelector('.product-detail');
-const cardsContainer = document.querySelector(.cards-container);
+const shoppingCartContainer = document.querySelector('#shoppingCartContainer');
+const cardsContainer = document.querySelector('.cards-container');
+const productDetailContainer  = document.querySelector('#ProductDetail');
 
 navEmail.addEventListener('click',toggleDesktopMenu);
 hamMenu.addEventListener('click',toggleMobileMenu);
-menuCarritoIcon.addEventListener('clic',toggleCarritoAside)
+menuCarritoIcon.addEventListener('clic',toggleCarritoAside);
 
 
 
@@ -17,11 +18,11 @@ function toggleDesktopMenu(){
 }
 
 function toggleMobilMenu(){
-    const isAsideClosed=aside.classList.contains('inactive');
+    const isAsideClosed=shoppingCartContainer.classList.contains('inactive');
     if(!isAsideClosed){
-        aside.classList.add('inactive');
+        shoppingCartContainer.classList.add('inactive');
     }
-    
+    closeProductDetailAside();
 }
 
 function toggleCarritoAside(){
@@ -33,7 +34,11 @@ function toggleCarritoAside(){
         mobileMenu.classList.add('inactive');
       }
 
-      aside.classList.toggle('inactive');
+      shoppingCartContainer.classList.toggle('inactive');
+}
+
+function openProductDetail(){
+    productDetailContainer.classList.remove('inactive')
 }
 
 const productList=[];
@@ -49,7 +54,10 @@ productList.push({
     image:'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
 
 })
-for (product of productList){
+
+function renderProducts(arr)
+{
+for (product of arr){
     const productCard= document.createElement('div');
     productCard.classList.add('product-card');
 
@@ -87,7 +95,7 @@ for (product of productList){
 
     cardsContainer.appendChild(productCard)
 
-
+ }
 
 
 }
